@@ -1,17 +1,16 @@
-# Archivo: .github/workflows/terraform-dev.yml
 
 name: 'Terraform Dev - Despliegue IaC'
 
 on:
   push:
     branches:
-      - main  # Se dispara al subir cambios a la rama principal
+      - main
     paths:
-      - 'env/dev/**'  # Monitorea cambios solo en la carpeta de dev
-      - 'modules/**'  # Y en los módulos que usa dev
+      - 'env/dev/**'
+      - 'modules/**'
 
 env:
-  TF_WORKING_DIR: ./env/dev # Directorio donde están los archivos del entorno
+  TF_WORKING_DIR: ./env/dev
   AWS_REGION: us-east-1
 
 jobs:
@@ -19,11 +18,11 @@ jobs:
     name: 'Terraform Plan & Apply (DEV)'
     runs-on: ubuntu-latest
 
-    # Configuración de credenciales de AWS usando los TRES Secretos Temporales
+
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }} # ¡Necesario para el entorno de laboratorio!
+      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 
     steps:
       - name: Checkout Code
@@ -32,7 +31,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.7.0 # Usa la versión que estés utilizando
+          terraform_version: 1.7.0
 
       - name: Terraform Init
         id: init
@@ -46,11 +45,9 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        # Genera un plan y lo guarda en un archivo binario
         run: terraform plan -input=false -out=tfplan -lock-timeout=15s
         working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: Terraform Apply (Despliegue automático en Dev)
-        # Aplica el plan guardado (tfplan)
         run: terraform apply -auto-approve tfplan
         working-directory: ${{ env.TF_WORKING_DIR }}
