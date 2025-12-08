@@ -1,0 +1,11 @@
+# Archivo: .gitignore
+# Archivos y directorios generados por Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*.tfplan
+*.tfplan.backup
+
+# Archivos de credenciales o caché
+*.pem
+*.ppk
