@@ -1,4 +1,3 @@
-# Archivo: env/dev/variables.tf
 
 variable "environment" {
   description = "Nombre del entorno (ej: dev, prod)"
@@ -7,11 +6,6 @@ variable "environment" {
 
 variable "instance_type" {
   description = "Tipo de instancia EC2"
-  type        = string
-}
-
-variable "ami_id" {
-  description = "ID de la AMI a usar para las instancias"
   type        = string
 }
 
