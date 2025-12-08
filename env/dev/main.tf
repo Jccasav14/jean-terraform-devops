@@ -32,26 +32,20 @@ data "aws_ami" "amazon_linux_2023" {
   }
 }
 
-# ----------------------------------------------------
-# 1. MÓDULO VPC
-# ----------------------------------------------------
+
 module "vpc" {
   source      = "../../modules/vpc"
   environment = var.environment
 }
 
-# ----------------------------------------------------
-# 2. MÓDULO SECURITY GROUPS
-# ----------------------------------------------------
+
 module "security_groups" {
   source      = "../../modules/security_groups"
   environment = var.environment
   vpc_id      = module.vpc.vpc_id # Pasa la salida de VPC como entrada
 }
 
-# ----------------------------------------------------
-# 3. MÓDULO EC2/ASG/ALB
-# ----------------------------------------------------
+
 module "ec2_asg" {
   source              = "../../modules/ec2_asg"
   environment         = var.environment
