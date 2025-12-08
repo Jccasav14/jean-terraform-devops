@@ -10,7 +10,6 @@ resource "aws_vpc" "main" {
   }
 }
 
-# Define el Internet Gateway (IGW)
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 }
