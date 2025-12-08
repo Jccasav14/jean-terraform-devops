@@ -19,7 +19,7 @@ resource "aws_security_group" "alb" {
   }
 }
 
-# SG para las instancias EC2
+
 resource "aws_security_group" "app_instance" {
   name        = "${var.environment}-App-Instance-SG"
   description = "Permite trafico desde ALB y SSH"
