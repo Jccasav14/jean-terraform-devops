@@ -1,4 +1,3 @@
-# Define la VPC principal
 resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr
   enable_dns_support   = true
@@ -14,7 +13,6 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 }
 
-# Subred Pública (usaremos una lista para simular múltiples AZs, aunque aquí es solo una)
 resource "aws_subnet" "public" {
   count                   = length(var.public_subnets_cidr)
   vpc_id                  = aws_vpc.main.id
