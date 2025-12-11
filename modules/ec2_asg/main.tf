@@ -90,7 +90,7 @@ resource "aws_launch_template" "asg_lt" {
   user_data = base64encode(data.template_file.init.rendered)
 }
 
-# 5. Auto Scaling Group (ASG)
+
 resource "aws_autoscaling_group" "asg" {
   name                      = "${var.environment}-asg"
   vpc_zone_identifier       = var.public_subnet_ids
