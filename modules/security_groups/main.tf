@@ -1,4 +1,3 @@
-# SG para el Load Balancer
 resource "aws_security_group" "alb" {
   name        = "${var.environment}-ALB-SG"
   description = "Permite trafico HTTP (80) desde Internet"
