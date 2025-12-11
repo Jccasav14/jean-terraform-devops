@@ -1,8 +1,6 @@
 # Archivo: ../../modules/ec2_asg/main.tf (CORREGIDO Y LIMPIO DE CARACTERES)
 
-# ----------------------------------------------------
-# 1. GENERAR LA LLAVE PRIVADA LOCAL
-# ----------------------------------------------------
+
 resource "tls_private_key" "key_pair" {
   algorithm = "RSA"
   rsa_bits  = 4096
