@@ -25,7 +25,6 @@ resource "aws_security_group" "app_instance" {
   description = "Permite trafico desde ALB y SSH"
   vpc_id      = var.vpc_id
 
-  # Regla de entrada: Permite tráfico HTTP (80) SÓLO desde el SG del ALB
   ingress {
     from_port   = 80
     to_port     = 80
@@ -33,7 +32,6 @@ resource "aws_security_group" "app_instance" {
     security_groups = [aws_security_group.alb.id]
   }
 
-  # Regla de entrada: SSH (para ti)
   ingress {
     from_port   = 22
     to_port     = 22
