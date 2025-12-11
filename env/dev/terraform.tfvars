@@ -1,6 +1,5 @@
 environment      = "dev"
 instance_type    = "t3.micro"
-key_name         = "HelloWorldppk"
-min_instances    = 2
+min_instances    = 3
 max_instances    = 6
-desired_capacity = 6
+desired_capacity = 3

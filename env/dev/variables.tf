@@ -9,10 +9,6 @@ variable "instance_type" {
   type        = string
 }
 
-variable "key_name" {
-  description = "Nombre de la llave SSH para las instancias"
-  type        = string
-}
 
 variable "min_instances" {
   description = "Mínimo de instancias en el ASG"
